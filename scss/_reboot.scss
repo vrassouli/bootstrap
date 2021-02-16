@@ -420,10 +420,14 @@ textarea {
 }
 
 // Remove the inheritance of text transform in Firefox
-
 button,
 select {
   text-transform: none;
+}
+
+// Undo the opacity change from Chrome
+select:disabled {
+  opacity: 1;
 }
 
 // Set the cursor for non-`<button>` buttons
