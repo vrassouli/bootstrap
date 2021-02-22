@@ -10712,9 +10712,32 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+/* Variables */
+/* colors */
+:root {
+  --bs-default-border-color: #dee2e6;
+}
+
 /* Nav tabs */
 .nav.nav-vertical {
   flex-direction: column;
+}
+.nav.nav-vertical.nav-tabs {
+  border-bottom: none;
+  -webkit-border-end: 1px solid #dee2e6;
+  border-inline-end: 1px solid #dee2e6;
+}
+.nav.nav-vertical.nav-tabs > .nav-link {
+  margin-bottom: 0;
+  -webkit-margin-end: -1px;
+  margin-inline-end: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.nav.nav-vertical.nav-tabs > .nav-link.active {
+  border-color: #dee2e6 transparent #dee2e6 #dee2e6;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

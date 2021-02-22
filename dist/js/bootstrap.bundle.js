@@ -255,7 +255,9 @@
     }
   };
 
-  var isRTL = document.documentElement.dir === 'rtl';
+  var isRTL = function isRTL() {
+    return document.documentElement.dir === 'rtl';
+  };
 
   var defineJQueryPlugin = function defineJQueryPlugin(name, plugin) {
     onDOMContentLoaded(function () {
@@ -1211,8 +1213,6 @@
     };
 
     _proto.dispose = function dispose() {
-      _BaseComponent.prototype.dispose.call(this);
-
       EventHandler.off(this._element, EVENT_KEY$2);
       this._items = null;
       this._config = null;
@@ -1221,6 +1221,8 @@
       this._isSliding = null;
       this._activeElement = null;
       this._indicatorsElement = null;
+
+      _BaseComponent.prototype.dispose.call(this);
     } // Private
     ;
 
@@ -1241,7 +1243,7 @@
       this.touchDeltaX = 0; // swipe left
 
       if (direction > 0) {
-        if (isRTL) {
+        if (isRTL()) {
           this.next();
         } else {
           this.prev();
@@ -1250,7 +1252,7 @@
 
 
       if (direction < 0) {
-        if (isRTL) {
+        if (isRTL()) {
           this.prev();
         } else {
           this.next();
@@ -1364,7 +1366,7 @@
       if (event.key === ARROW_LEFT_KEY) {
         event.preventDefault();
 
-        if (isRTL) {
+        if (isRTL()) {
           this.next();
         } else {
           this.prev();
@@ -1372,7 +1374,7 @@
       } else if (event.key === ARROW_RIGHT_KEY) {
         event.preventDefault();
 
-        if (isRTL) {
+        if (isRTL()) {
           this.prev();
         } else {
           this.next();
@@ -3773,12 +3775,12 @@
   var SELECTOR_MENU = '.dropdown-menu';
   var SELECTOR_NAVBAR_NAV = '.navbar-nav';
   var SELECTOR_VISIBLE_ITEMS = '.dropdown-menu .dropdown-item:not(.disabled):not(:disabled)';
-  var PLACEMENT_TOP = isRTL ? 'top-end' : 'top-start';
-  var PLACEMENT_TOPEND = isRTL ? 'top-start' : 'top-end';
-  var PLACEMENT_BOTTOM = isRTL ? 'bottom-end' : 'bottom-start';
-  var PLACEMENT_BOTTOMEND = isRTL ? 'bottom-start' : 'bottom-end';
-  var PLACEMENT_RIGHT = isRTL ? 'left-start' : 'right-start';
-  var PLACEMENT_LEFT = isRTL ? 'right-start' : 'left-start';
+  var PLACEMENT_TOP = isRTL() ? 'top-end' : 'top-start';
+  var PLACEMENT_TOPEND = isRTL() ? 'top-start' : 'top-end';
+  var PLACEMENT_BOTTOM = isRTL() ? 'bottom-end' : 'bottom-start';
+  var PLACEMENT_BOTTOMEND = isRTL() ? 'bottom-start' : 'bottom-end';
+  var PLACEMENT_RIGHT = isRTL() ? 'left-start' : 'right-start';
+  var PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
   var Default$2 = {
     offset: [0, 2],
     flip: true,
@@ -3937,8 +3939,6 @@
     };
 
     _proto.dispose = function dispose() {
-      _BaseComponent.prototype.dispose.call(this);
-
       EventHandler.off(this._element, EVENT_KEY$4);
       this._menu = null;
 
@@ -3947,6 +3947,8 @@
 
         this._popper = null;
       }
+
+      _BaseComponent.prototype.dispose.call(this);
     };
 
     _proto.update = function update() {
@@ -4698,11 +4700,11 @@
     _proto._adjustDialog = function _adjustDialog() {
       var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
-      if (!this._isBodyOverflowing && isModalOverflowing && !isRTL || this._isBodyOverflowing && !isModalOverflowing && isRTL) {
+      if (!this._isBodyOverflowing && isModalOverflowing && !isRTL() || this._isBodyOverflowing && !isModalOverflowing && isRTL()) {
         this._element.style.paddingLeft = this._scrollbarWidth + "px";
       }
 
-      if (this._isBodyOverflowing && !isModalOverflowing && !isRTL || !this._isBodyOverflowing && isModalOverflowing && isRTL) {
+      if (this._isBodyOverflowing && !isModalOverflowing && !isRTL() || !this._isBodyOverflowing && isModalOverflowing && isRTL()) {
         this._element.style.paddingRight = this._scrollbarWidth + "px";
       }
     };
@@ -4874,7 +4876,7 @@
    * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
    */
 
-  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^#&/:?]*(?:[#/?]|$))/gi;
+  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^#&/:?]*(?:[#/?]|$))/i;
   /**
    * A pattern that matches safe data URLs. Only matches image, video and audio types.
    *
@@ -5021,9 +5023,9 @@
   var AttachmentMap = {
     AUTO: 'auto',
     TOP: 'top',
-    RIGHT: isRTL ? 'left' : 'right',
+    RIGHT: isRTL() ? 'left' : 'right',
     BOTTOM: 'bottom',
-    LEFT: isRTL ? 'right' : 'left'
+    LEFT: isRTL() ? 'right' : 'left'
   };
   var Default$4 = {
     animation: true,

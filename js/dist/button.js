@@ -73,8 +73,6 @@
     }
   };
 
-  document.documentElement.dir === 'rtl';
-
   var defineJQueryPlugin = function defineJQueryPlugin(name, plugin) {
     onDOMContentLoaded(function () {
       var $ = getjQuery();

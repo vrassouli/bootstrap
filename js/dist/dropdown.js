@@ -185,7 +185,9 @@
     }
   };
 
-  var isRTL = document.documentElement.dir === 'rtl';
+  var isRTL = function isRTL() {
+    return document.documentElement.dir === 'rtl';
+  };
 
   var defineJQueryPlugin = function defineJQueryPlugin(name, plugin) {
     onDOMContentLoaded(function () {
@@ -242,12 +244,12 @@
   var SELECTOR_MENU = '.dropdown-menu';
   var SELECTOR_NAVBAR_NAV = '.navbar-nav';
   var SELECTOR_VISIBLE_ITEMS = '.dropdown-menu .dropdown-item:not(.disabled):not(:disabled)';
-  var PLACEMENT_TOP = isRTL ? 'top-end' : 'top-start';
-  var PLACEMENT_TOPEND = isRTL ? 'top-start' : 'top-end';
-  var PLACEMENT_BOTTOM = isRTL ? 'bottom-end' : 'bottom-start';
-  var PLACEMENT_BOTTOMEND = isRTL ? 'bottom-start' : 'bottom-end';
-  var PLACEMENT_RIGHT = isRTL ? 'left-start' : 'right-start';
-  var PLACEMENT_LEFT = isRTL ? 'right-start' : 'left-start';
+  var PLACEMENT_TOP = isRTL() ? 'top-end' : 'top-start';
+  var PLACEMENT_TOPEND = isRTL() ? 'top-start' : 'top-end';
+  var PLACEMENT_BOTTOM = isRTL() ? 'bottom-end' : 'bottom-start';
+  var PLACEMENT_BOTTOMEND = isRTL() ? 'bottom-start' : 'bottom-end';
+  var PLACEMENT_RIGHT = isRTL() ? 'left-start' : 'right-start';
+  var PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
   var Default = {
     offset: [0, 2],
     flip: true,
@@ -406,8 +408,6 @@
     };
 
     _proto.dispose = function dispose() {
-      _BaseComponent.prototype.dispose.call(this);
-
       EventHandler__default['default'].off(this._element, EVENT_KEY);
       this._menu = null;
 
@@ -416,6 +416,8 @@
 
         this._popper = null;
       }
+
+      _BaseComponent.prototype.dispose.call(this);
     };
 
     _proto.update = function update() {

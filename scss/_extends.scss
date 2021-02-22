@@ -1,6 +1,37 @@
+/* Variables */
+$nav-tabs-vert-link-active-border-color: $gray-300 transparent $gray-300 $gray-300;
+$my-colors: (
+  "default-border-color":  $gray-300,
+) !default;
+
+/* colors */
+:root {
+    // Custom variable values only support SassScript inside `#{}`.
+    @each $color, $value in $my-colors {
+        --#{$variable-prefix}#{$color}: #{$value};
+    }
+}
+
 /* Nav tabs */
 .nav {
     &.nav-vertical{
         flex-direction: column;
+
+        &.nav-tabs{
+            border-bottom: none;
+            border-inline-end: $nav-tabs-border-width solid $nav-tabs-border-color;
+
+            >.nav-link{
+                margin-bottom: 0;
+                margin-inline-end: -$nav-tabs-border-width;
+                @include border-top-radius(0);
+                @include border-start-radius($nav-tabs-border-radius);
+
+                &.active{
+                    border-color: $nav-tabs-vert-link-active-border-color;
+                }
+                
+            }
+        }
     }
 }

@@ -227,7 +227,9 @@
     }
   };
 
-  var isRTL = document.documentElement.dir === 'rtl';
+  var isRTL = function isRTL() {
+    return document.documentElement.dir === 'rtl';
+  };
 
   var defineJQueryPlugin = function defineJQueryPlugin(name, plugin) {
     onDOMContentLoaded(function () {
@@ -261,7 +263,7 @@
    * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
    */
 
-  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^#&/:?]*(?:[#/?]|$))/gi;
+  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^#&/:?]*(?:[#/?]|$))/i;
   /**
    * A pattern that matches safe data URLs. Only matches image, video and audio types.
    *
@@ -408,9 +410,9 @@
   var AttachmentMap = {
     AUTO: 'auto',
     TOP: 'top',
-    RIGHT: isRTL ? 'left' : 'right',
+    RIGHT: isRTL() ? 'left' : 'right',
     BOTTOM: 'bottom',
-    LEFT: isRTL ? 'right' : 'left'
+    LEFT: isRTL() ? 'right' : 'left'
   };
   var Default = {
     animation: true,
