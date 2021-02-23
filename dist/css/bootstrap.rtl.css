@@ -10690,9 +10690,29 @@ textarea.form-control-lg {
   }
 }
 /* Variables */
-/* colors */
 :root {
-  --bs-default-border-color: #dee2e6;
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary-100: #cfe2ff;
+  --bs-primary-200: #9ec5fe;
+  --bs-primary-300: #6ea8fe;
+  --bs-primary-400: #3d8bfd;
+  --bs-primary-500: #0d6efd;
+  --bs-primary-600: #0a58ca;
+  --bs-primary-700: #084298;
+  --bs-primary-800: #07377f;
+  --bs-primary-900: #031633;
+  --bs-border-radius: $border-radius;
+  --bs-border-radius-sm: $border-radius-sm;
+  --bs-border-radius-lg: $border-radius-lg;
+  --bs-border-radius-pill: $border-radius-pill;
 }
 
 /* Nav tabs */

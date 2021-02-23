@@ -1,17 +1,31 @@
 /* Variables */
 $nav-tabs-vert-link-active-border-color: $gray-300 transparent $gray-300 $gray-300;
-$my-colors: (
-  "default-border-color":  $gray-300,
+
+$primaries: (
+  "100": tint-color($primary, 80%),
+  "200": tint-color($primary, 60%),
+  "300": tint-color($primary, 40%),
+  "400": tint-color($primary, 20%),
+  "500": $primary,
+  "600": shade-color($blue, 20%),
+  "700": shade-color($blue, 40%),
+  "800": shade-color($blue, 50%),
+  "900": shade-color($blue, 80%)
 ) !default;
 
-/* colors */
 :root {
-    // Custom variable values only support SassScript inside `#{}`.
-    @each $color, $value in $my-colors {
-        --#{$variable-prefix}#{$color}: #{$value};
+    @each $postfix, $value in $grays {
+        --#{$variable-prefix}gray-#{$postfix}: #{$value};
     }
-}
+    @each $postfix, $value in $primaries {
+        --#{$variable-prefix}primary-#{$postfix}: #{$value};
+    }
 
+    --bs-border-radius: $border-radius;
+    --bs-border-radius-sm: $border-radius-sm;
+    --bs-border-radius-lg: $border-radius-lg;
+    --bs-border-radius-pill: $border-radius-pill;
+}
 /* Nav tabs */
 .nav {
     &.nav-vertical{
