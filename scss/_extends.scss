@@ -21,10 +21,10 @@ $primaries: (
         --#{$variable-prefix}primary-#{$postfix}: #{$value};
     }
 
-    --bs-border-radius: $border-radius;
-    --bs-border-radius-sm: $border-radius-sm;
-    --bs-border-radius-lg: $border-radius-lg;
-    --bs-border-radius-pill: $border-radius-pill;
+    --bs-border-radius: #{$border-radius};
+    --bs-border-radius-sm: #{$border-radius-sm};
+    --bs-border-radius-lg: #{$border-radius-lg};
+    --bs-border-radius-pill: #{$border-radius-pill};
 }
 /* Nav tabs */
 .nav {

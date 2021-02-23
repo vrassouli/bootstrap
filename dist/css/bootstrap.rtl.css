@@ -10709,10 +10709,10 @@ textarea.form-control-lg {
   --bs-primary-700: #084298;
   --bs-primary-800: #07377f;
   --bs-primary-900: #031633;
-  --bs-border-radius: $border-radius;
-  --bs-border-radius-sm: $border-radius-sm;
-  --bs-border-radius-lg: $border-radius-lg;
-  --bs-border-radius-pill: $border-radius-pill;
+  --bs-border-radius: 0.25rem;
+  --bs-border-radius-sm: 0.2rem;
+  --bs-border-radius-lg: 0.3rem;
+  --bs-border-radius-pill: 50rem;
 }
 
 /* Nav tabs */
